@@ -8,7 +8,7 @@ describe EventsImport::PubStandards do
 		expect(pub_standards.second_thursdays.count).to eq 12
 	end
 
-	it "creates an event if it doesn't exist" do
+	it "creates an event" do
 		@date = Date.new(2013,02,14)
 		pub_standards = EventsImport::PubStandards.new
 		@new_event = pub_standards.check_or_create @date
