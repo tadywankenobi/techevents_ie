@@ -20,28 +20,28 @@ Firstly clone the repo to your GitHub account:
 
 Next, open terminal and navigate to a directory where you would like the project to live. Then clone the repo:
 
-  git clone https://github.com/username/techevents_ie.git
-  # Clones your fork of the repository into the current directory in terminal
+	git clone https://github.com/username/techevents_ie.git
+	# Clones your fork of the repository into the current directory in terminal
 
 Navigate into the directory and add the orginal repo as an upstream remote. When a repository is cloned, it has a default remote called origin that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you need to add another remote named upstream:
 
-  cd techevents_ie
-  # Changes the active directory in the prompt to the newly cloned "techevents_ie" directory
+	cd techevents_ie
+	# Changes the active directory in the prompt to the newly cloned "techevents_ie" directory
 
-  git remote add upstream https://github.com/bkenny/techevents_ie.git
-  # Assigns the original repository to a remote called "upstream"
+	git remote add upstream https://github.com/bkenny/techevents_ie.git
+	# Assigns the original repository to a remote called "upstream"
 
-  git fetch upstream
-  # Pulls in changes not present in your local repository, without modifying your files
+	git fetch upstream
+	# Pulls in changes not present in your local repository, without modifying your files
 
 The project uses a Postgres database. Once you have Postgres installed you can create the databases with:
 
-  rake db:create
-  rake db:migrate
+	rake db:create
+	rake db:migrate
 
 Then start the local server
 
-  rails s
+	rails s
 
 Bingo! You're ready to start creating pull requests.
 
