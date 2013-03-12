@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  starting_at: 2013-03-12 11:22:02
+  ending_at: 2013-03-12 11:22:02
+  price: 1.5
+  information_url: MyString
+  booking_url: MyString
+  information: MyText
+
+two:
+  title: MyString
+  starting_at: 2013-03-12 11:22:02
+  ending_at: 2013-03-12 11:22:02
+  price: 1.5
+  information_url: MyString
+  booking_url: MyString
+  information: MyText
