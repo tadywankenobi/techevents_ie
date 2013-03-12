@@ -1,8 +1,11 @@
 module EventsImport
 	class PubStandards
+		
+		attr_reader :second_thursdays
+
 		def import(date_from, date_to)
-			second_thursdays = (date_from..date_to).select {|d| d.wday == 4 and d.day > 7 and d.day < 15}
-			second_thursdays.each{|event_date| check_or_create event_date.to_datetime}
+			@second_thursdays = (date_from..date_to).select {|d| d.wday == 4 and d.day > 7 and d.day < 15}
+			@second_thursdays.each{|event_date| check_or_create event_date.to_datetime}
 		end
 
 		def check_or_create event_date
