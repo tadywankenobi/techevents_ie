@@ -1,4 +1,4 @@
-require 'events_import/pub_standards'
+require 'events_import/events_import'
 require 'spec_helper'
 
 describe EventsImport::PubStandards do
