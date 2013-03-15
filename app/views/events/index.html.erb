@@ -1,6 +1,9 @@
 <div class="events">
-	<% @events.each do |event| %>
-		<%= event.starting_at %> - <%= link_to event.title, event_path(event) %><br />
+	<% @event_months.sort.each do |month, events| %>
+		<h2><%= month.strftime('%B') %></h2>
+		<% events.each do |event| %>
+			<%= event.starting_at %> - <%= link_to event.title, event_path(event) %><br />
+		<% end %>
 	<% end %>
 </div>
 
