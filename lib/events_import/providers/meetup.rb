@@ -28,7 +28,11 @@ module EventsImport
 			end
 
 			def fetch_groups(country_code, state, city)
-				Hashie::Mash.new(HTTParty.get(@@base_uri + "groups?category_id=" + @@category_id + "&country=" + country_code + "&state=" + state + "&city=" + city + "&key=" + ENV['MEETUP_API_KEY']))
+				if ENV['MEETUP_API_KEY']
+					Hashie::Mash.new(HTTParty.get(@@base_uri + "groups?category_id=" + @@category_id + "&country=" + country_code + "&state=" + state + "&city=" + city + "&key=" + ENV['MEETUP_API_KEY']))
+				else
+					puts "No meetup api key ENV var"
+				end
 			end
 
 			def fetch_events(group_id)
@@ -41,6 +45,24 @@ module EventsImport
 
 			def check_or_create events
 				events.each do |event|
+
+					if event.venue
+						venue = Venue.where(:title => event.venue.name, :county => event.venue.city).first_or_create(
+							:title => event.venue.name,
+							:address => event.venue.address_1,
+							:county => event.venue.city,
+							:country => "Ireland",
+							:lat => event.venue.lat,
+							:lng => event.venue.lon
+						)
+					end
+
+					if venue
+						venue_id = venue.id
+					else
+						venue_id = 0
+					end
+
 					starting_time = Time.at(event.time / 1000.0)
 					if event.duration
 						ending_time = starting_time + (event.duration / 1000.0)
@@ -54,7 +76,8 @@ module EventsImport
 						:information_url => event.event_url,
 						:information => event.description,
 						:source => "meetup",
-						:source_id => event.id
+						:source_id => event.id,
+						:venue_id => venue_id
 					)
 				end
 			end
