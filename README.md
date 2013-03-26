@@ -43,6 +43,14 @@ Then start the local server
 
 	rails s
 
+Import data from standard meetups, meetup.com and lanyrd
+
+	# Add an envoirnment var for the meetup api key
+	export MEETUP_API_KEY="your_meetup_com_api_key"
+
+	# Import the data
+	rake import_all
+
 Bingo! You're ready to start creating pull requests.
 
 ## Licensing
