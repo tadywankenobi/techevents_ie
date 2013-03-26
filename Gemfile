@@ -37,6 +37,9 @@ gem 'hashie'
 # Regions
 gem 'carmen'
 
+# Lanyrd API
+gem 'lanyrd', '~> 0.1.0'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

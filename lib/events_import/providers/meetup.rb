@@ -53,7 +53,8 @@ module EventsImport
 						:ending_at => ending_time,
 						:information_url => event.event_url,
 						:information => event.description,
-						:source => "meetup"
+						:source => "meetup",
+						:source_id => event.id
 					)
 				end
 			end

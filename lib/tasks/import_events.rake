@@ -20,3 +20,8 @@ task :import_providers => :environment do
 		end
 	end
 end
+
+task :import_lanyrd => :environment do
+	lanyrd = EventsImport::Providers::Lanyrd.new
+	lanyrd.update
+end
