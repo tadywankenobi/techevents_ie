@@ -40,6 +40,9 @@ gem 'carmen'
 # Lanyrd API
 gem 'lanyrd', '~> 0.1.0'
 
+# Friendly URLS
+gem "friendly_id", "~> 4.0.9"
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
