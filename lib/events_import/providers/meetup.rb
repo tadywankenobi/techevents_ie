@@ -14,18 +14,21 @@ module EventsImport
 
 			def update(country_code, state, city)
 				groups = fetch_groups(country_code, state, city)
-				puts "Found " + groups.count.to_s + " groups in #{city}"
-				groups.each do |group|
-					events = fetch_events(group.id.to_s)
-					puts "Found " + events.count.to_s + " events for #{group.name}"
-					check_or_create events
+				unless groups.problem
+					puts "Found " + groups.results.count.to_s + " groups in #{city}"
+					groups.results.each do |group|
+						events = fetch_events(group.id.to_s)
+						puts "Found " + events.count.to_s + " events for #{group.name}"
+						check_or_create events
+
+						# Avoids throttling failure from meetup.com
+						sleep 2
+					end
 				end
 			end
 
 			def fetch_groups(country_code, state, city)
-				search = Hashie::Mash.new(HTTParty.get(@@base_uri + "groups?category_id=" + @@category_id + "&country=" + country_code + "&state=" + state + "&city=" + city + "&key=" + ENV['MEETUP_API_KEY']))
-				puts "Found " + search.results.count.to_s + " groups in #{city}"
-				search.results
+				Hashie::Mash.new(HTTParty.get(@@base_uri + "groups?category_id=" + @@category_id + "&country=" + country_code + "&state=" + state + "&city=" + city + "&key=" + ENV['MEETUP_API_KEY']))
 			end
 
 			def fetch_events(group_id)

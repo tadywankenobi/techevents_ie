@@ -1,4 +1,5 @@
 require 'events_import/events_import'
+include Carmen
 
 task :import_meetups => :environment do
   pub_standards = EventsImport::Meetups::PubStandards.new
@@ -10,5 +11,12 @@ end
 
 task :import_providers => :environment do
 	meetup = EventsImport::Providers::Meetup.new
-	meetup.update('IE', 'Dublin', 'Dublin')
+
+	ie = Country.named('Ireland')
+	ie.subregions.each do |province|
+		province.subregions.each do |county|
+			puts "Checking #{county.name}, #{ie.alpha_2_code} for meetups"
+			meetup.update(ie.alpha_2_code, province.name, county.name)
+		end
+	end
 end
