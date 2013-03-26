@@ -1,4 +1,5 @@
 TecheventsIe::Application.routes.draw do
+  resources :venues
   resources :events
   devise_for :users
 

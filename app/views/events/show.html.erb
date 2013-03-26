@@ -8,4 +8,11 @@
 
 <div><%= @event.information.html_safe %></div>
 
+<h2>Venue</h2>
+<div>Title: <%= @event.venue.title %></div>
+<div>Address: <%= @event.venue.address %></div>
+<div>County: <%= @event.venue.county %></div>
+<div>Lat/Lng: <%= @event.venue.lat %>, <%= @event.venue.lng %></div>
+<br />
+
 <%= link_to "Home", root_path %>
