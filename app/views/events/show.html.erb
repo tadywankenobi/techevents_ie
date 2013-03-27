@@ -19,8 +19,8 @@
 	<div id='map'></div>
 	<script>
 	  
-	  var map = mapbox.map('map');
-  	map.addLayer(mapbox.layer().id('bkenny.map-awlws0es'));
+	  var map = mapbox.map('map', mapbox.layer().id('bkenny.map-awlws0es'));
+  	map.ui['zoomer'].add();
 
 	  // Create an empty markers layer
 	  var markerLayer = mapbox.markers.layer();
