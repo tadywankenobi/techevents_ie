@@ -7,7 +7,7 @@ module EventsImport
 			end
 
 			def check_or_create event_date
-				venue = Venue.where(:title => "Bull & Castle", :county => "Dublin").first_or_create(
+				venue = Venue.where(:title => "Science Gallery", :county => "Dublin").first_or_create(
 					:title => "Science Gallery",
 					:address => "Pearse St",
 					:county => "Dublin",
