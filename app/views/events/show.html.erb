@@ -3,8 +3,8 @@
 <%= link_to "Home", root_path %>
 <h1><%= @event.title %></h1>
 
-<div>Starting: <%= @event.starting_at %></div>
-<div>Ending: <%= @event.ending_at %></div>
+<div>Starting: <%= friendly_time(@event.starting_at) %></div>
+<div>Ending: <%= friendly_time(@event.ending_at) %></div>
 <div>Price: <%= @event.price %></div>
 <div>Information URL: <%= link_to @event.information_url, @event.information_url %></div>
 <div>Booking URL: <%= link_to @event.booking_url, @event.booking_url %></div>
