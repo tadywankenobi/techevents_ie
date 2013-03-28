@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326161747) do
+ActiveRecord::Schema.define(:version => 20130328120423) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130326161747) do
     t.float    "lng"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "fs_id"
   end
 
 end

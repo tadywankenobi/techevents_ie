@@ -19,6 +19,11 @@ module EventsImport
 					:lng => -6.269889
 				)
 
+				unless venue.fs_id
+					venue_import = EventsImport::Venues.new
+					venue_import.fetch_fs_id venue
+				end
+
 				Event.where(:source => "pub_standards", :starting_at => event_date.beginning_of_day..event_date.end_of_day).first_or_create(
 					:title => "Pub Standards",
 					:starting_at => event_date.change({:hour => 18, :min => 30}),

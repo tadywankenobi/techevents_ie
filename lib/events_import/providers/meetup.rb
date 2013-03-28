@@ -55,6 +55,11 @@ module EventsImport
 							:lat => event.venue.lat,
 							:lng => event.venue.lon
 						)
+
+						unless venue.fs_id
+							venue_import = EventsImport::Venues.new
+							venue_import.fetch_fs_id venue
+						end
 					end
 
 					if venue
