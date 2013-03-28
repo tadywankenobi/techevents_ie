@@ -1,6 +1,6 @@
 TecheventsIe::Application.routes.draw do
   resources :venues
-  resources :events
+  resources :events, :path => ''
   devise_for :users
 
   # The priority is based upon order of creation:
