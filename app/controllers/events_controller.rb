@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 	def show
 		@event = Event.find(params[:id])
 
-		if @event.venue.fs_id?
+		if @event.venue and @event.venue.fs_id
 			venue = EventsImport::Venues.new
 			@photos = venue.fetch_photos @event.venue
 		end
