@@ -1,3 +1,4 @@
+<%= link_to "Home", root_path %>
 <h1><%= @event.title %></h1>
 
 <div>Starting: <%= @event.starting_at %></div>
@@ -54,6 +55,11 @@
 	  });
 	</script>
 	<br />
+	<% if @photos %>
+		<h2>Photos</h2>
+		<% @photos.each do |photo| %>
+			<%= image_tag photo.url, :class => "venue_photo" %>
+		<% end %>
+		<br />
+	<% end %>
 <% end %>
-
-<%= link_to "Home", root_path %>
