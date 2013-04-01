@@ -33,9 +33,6 @@ task :import_providers => :environment do
 end
 
 task :import_all => :environment do
-	# Rake::Task['import_meetups'].invoke
-	# Rake::Task['import_providers'].invoke
-
-	lanyrd = EventsImport::Providers::Lanyrd.new
-	lanyrd.update
+	Rake::Task['import_meetups'].invoke
+	Rake::Task['import_providers'].invoke
 end
