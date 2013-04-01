@@ -22,7 +22,7 @@ module EventsImport
 						check_or_create events
 
 						# Avoids throttling failure from meetup.com
-						sleep 2
+						sleep 1
 					end
 				end
 			end

@@ -6,12 +6,12 @@ module EventsImport
 	module Providers
 		class Lanyrd
 
-			def update
+			def update county
 				topics = fetch_topics
 				lanyrd = Lanyrd::Client.new
 				
 				topics.each do |topic|
-					results = fetch_events(topic, 'Dublin')
+					results = fetch_events(topic, county)
 					results.each do |result|
 						slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
 						fetch_event(slug)

@@ -17,19 +17,16 @@ end
 task :import_providers => :environment do
 	puts "Importing Meetup.com..."
 	meetup = EventsImport::Providers::Meetup.new
+	lanyrd = EventsImport::Providers::Lanyrd.new
 
 	ie = Country.named('Ireland')
 	ie.subregions.each do |province|
 		province.subregions.each do |county|
-			puts "Checking #{county.name}, #{ie.alpha_2_code} for meetups"
+			puts "Checking #{county.name}, #{ie.alpha_2_code} for meetups and lanyrds"
 			meetup.update(ie.alpha_2_code, province.name, county.name)
+			lanyrd.update county
 		end
 	end
-	puts "Done."
-
-	puts "Importing Lanyard..."
-	lanyrd = EventsImport::Providers::Lanyrd.new
-	lanyrd.update
 	puts "Done."
 end
 
