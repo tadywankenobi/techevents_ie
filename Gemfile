@@ -35,7 +35,7 @@ gem 'json'
 gem 'hashie'
 
 # Regions
-gem 'carmen'
+gem 'carmen', '~> 1.0.0.beta2'
 
 # Lanyrd API
 gem 'lanyrd', '~> 1.1.1'

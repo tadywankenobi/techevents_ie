@@ -1,4 +1,5 @@
 require 'events_import/events_import'
+require 'carmen'
 include Carmen
 
 task :import_meetups => :environment do
