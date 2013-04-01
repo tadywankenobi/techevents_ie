@@ -26,13 +26,16 @@ task :import_providers => :environment do
 	end
 	puts "Done."
 
-	#puts "Importing Lanyard..."
-	#lanyrd = EventsImport::Providers::Lanyrd.new
-	#lanyrd.update
-	#puts "Done."
+	puts "Importing Lanyard..."
+	lanyrd = EventsImport::Providers::Lanyrd.new
+	lanyrd.update
+	puts "Done."
 end
 
 task :import_all => :environment do
-	Rake::Task['import_meetups'].invoke
-	Rake::Task['import_providers'].invoke
+	# Rake::Task['import_meetups'].invoke
+	# Rake::Task['import_providers'].invoke
+
+	lanyrd = EventsImport::Providers::Lanyrd.new
+	lanyrd.update
 end

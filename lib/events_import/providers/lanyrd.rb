@@ -12,13 +12,10 @@ module EventsImport
 				
 				topics.each do |topic|
 					results = fetch_events(topic, 'Dublin')
-					results['sections'].each do |section|
-						section['rows'].each do |event|
-							slug = event['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
-							fetch_event(slug)
-						end
+					results.each do |result|
+						slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
+						fetch_event(slug)
 					end
-
 				end
 			end
 
@@ -51,6 +48,11 @@ module EventsImport
 						:lng => event['primary_venue']['longitude']
 					)
 					puts "Venue: #{venue.title}"
+
+					unless venue.fs_id
+						venue_import = EventsImport::Venues.new
+						venue_import.fetch_fs_id venue
+					end
 				end
 
 				if venue

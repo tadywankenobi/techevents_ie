@@ -38,7 +38,7 @@ gem 'hashie'
 gem 'carmen'
 
 # Lanyrd API
-gem 'lanyrd', '~> 0.1.0'
+gem 'lanyrd', '~> 1.1.1'
 
 # Friendly URLS
 gem "friendly_id", "~> 4.0.9"
