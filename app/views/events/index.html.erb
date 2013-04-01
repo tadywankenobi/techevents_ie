@@ -2,7 +2,7 @@
 
 <div class="events">
 	<% @event_months.sort.each do |month, events| %>
-		<h2><%= month.strftime('%B') %></h2>
+		<h2><%= month.strftime('%B') %> (<%= events.count %>)</h2>
 		<% events.each do |event| %>
 			<%= friendly_time(event.starting_at) %> - <%= link_to event.title, event_path(event) %><br />
 		<% end %>
