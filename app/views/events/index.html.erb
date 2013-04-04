@@ -2,7 +2,12 @@
 
 <div class="events">
 	<% @event_months.sort.each do |month, events| %>
-		<h2><%= month.strftime('%B') %> (<%= events.count %>)</h2>
+		<% if month.strftime('%Y') == Date.today.year.to_s %>
+			<h2><%= month.strftime('%B') %> (<%= events.count %>)</h2>
+		<% else %>
+			<h2><%= month.strftime('%B, %Y') %> (<%= events.count %>)</h2>
+		<% end %>
+
 		<% events.each do |event| %>
 			<%= friendly_time(event.starting_at) %> - <%= link_to event.title, event_path(event) %><br />
 		<% end %>

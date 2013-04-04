@@ -24,7 +24,7 @@ task :import_providers => :environment do
 		province.subregions.each do |county|
 			puts "Checking #{county.name}, #{ie.alpha_2_code} for meetups and lanyrds"
 			meetup.update(ie.alpha_2_code, province.name, county.name)
-			lanyrd.update county
+			lanyrd.update county.name
 		end
 	end
 	puts "Done."

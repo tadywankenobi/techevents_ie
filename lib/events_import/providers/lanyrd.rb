@@ -15,6 +15,7 @@ module EventsImport
 					results.each do |result|
 						slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
 						fetch_event(slug)
+
 					end
 				end
 			end
