@@ -16,3 +16,9 @@
 
 .powenv
 .powrc
+
+.env
+.env.development
+.env.test
+
+/config/database.yml
