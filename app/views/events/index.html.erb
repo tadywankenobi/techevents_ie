@@ -1,15 +1,31 @@
 <% title "Tech Events Ireland" %>
 
-<div class="events">
+<div class="events ui huge list">
 	<% @event_months.sort.each do |month, events| %>
-		<% if month.strftime('%Y') == Date.today.year.to_s %>
-			<h2><%= month.strftime('%B') %> (<%= events.count %>)</h2>
-		<% else %>
-			<h2><%= month.strftime('%B, %Y') %> (<%= events.count %>)</h2>
-		<% end %>
-
-		<% events.each do |event| %>
-			<%= friendly_time(event.starting_at) %> - <%= link_to event.title, event_path(event) %><br />
-		<% end %>
+		<div class="item">
+			<div class="content">
+				<div class="header">
+					<% if month.strftime('%Y') == Date.today.year.to_s %>
+						<%= month.strftime('%B') %> (<%= events.count %>)
+					<% else %>
+						<%= month.strftime('%B, %Y') %> (<%= events.count %>)
+					<% end %>
+				</div>
+			</div>
+			<div class="list">
+				<% events.each do |event| %>
+					<div class="item">
+						<i class="ticket outline icon"></i>
+						<div class="content">
+							<a class="header" href="<%= event_path(event) %>"><%= event.title %></a>
+							<div class="description"><%= friendly_time(event.starting_at) %></div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		<div class="ui horizontal icon divider">
+		  <i class="circular heart icon"></i>
+		</div>
 	<% end %>
 </div>

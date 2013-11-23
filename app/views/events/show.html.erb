@@ -1,25 +1,43 @@
-<% title @event.title %>
+<div class="ui breadcrumb">
+	<%= link_to "Home", root_path, class: 'section' %>
+	<i class="right arrow icon divider"></i>
+	<div class="active section"><%= @event.title %></div>
+</div>
 
-<%= link_to "Home", root_path %>
-<h1><%= @event.title %></h1>
 
-<div>Starting: <%= friendly_time(@event.starting_at) %></div>
-<div>Ending: <%= friendly_time(@event.ending_at) %></div>
-<div>Price: <%= @event.price %></div>
-<div>Information URL: <%= link_to @event.information_url, @event.information_url %></div>
-<div>Booking URL: <%= link_to @event.booking_url, @event.booking_url %></div>
+<div class="ui icon header center aligned">
+  <i class="circular ticket icon"></i><%= @event.title %>
+</div>
 
-<div><%= @event.information.html_safe %></div>
+<div class="ui raised segment">
+	<div><strong>Starting:</strong> <%= friendly_time(@event.starting_at) %></div>
+	<div><strong>Ending:</strong> <%= friendly_time(@event.ending_at) %></div>
+	<div><strong>Price:</strong> <%= @event.price %></div>
+	<div><strong>Information URL:</strong> <%= link_to @event.information_url, @event.information_url %></div>
+	<div><strong>Booking URL:</strong> <%= link_to @event.booking_url, @event.booking_url %></div>
+
+	<div class="ui inverted segment">
+		<p><%= @event.information.html_safe %></p>
+	</div>
+</div>
 
 <% if @event.venue %>
-	<h2>Venue</h2>
-	<div>Title: <%= @event.venue_title %></div>
-	<div>Address: <%= @event.venue_address %></div>
-	<div>County: <%= @event.venue_county %></div>
-	<div>Lat/Lng: <%= @event.venue_lat %>, <%= @event.venue_lng %></div>
-	<br />
 
-	<div id='map'></div>
+	<div class="ui horizontal icon divider">
+	  <i class="circular heart icon"></i>
+	</div>
+
+	<div class="ui icon header center aligned">
+	  <i class="circular map marker icon"></i>Venue
+	</div>
+
+	<div class="ui raised segment center aligned">
+    <h1 class="ui header"><%= @event.venue_title %></h1>
+    <p class="description"><%= @event.venue_address %></p>
+    <p class="description"><%= @event.venue_county %></p>
+	</div>
+  <div class="ui center aligned" id='map'></div>
+
 	<script>
 
 	  var map = mapbox.map('map', mapbox.layer().id('bkenny.map-awlws0es'));
@@ -57,11 +75,22 @@
 	  });
 	</script>
 	<br />
+
 	<% if @photos %>
-		<h2>Photos</h2>
-		<% @photos.each do |photo| %>
-			<%= image_tag photo.url, class: "venue_photo" %>
-		<% end %>
+		<div class="ui horizontal icon divider">
+		  <i class="circular heart icon"></i>
+		</div>
+
+		<div class="ui icon header center aligned">
+		  <i class="circular photo icon"></i>Photos
+		</div>
+
+		<div class="ui small images">
+			<% @photos.each do |photo| %>
+				<%= image_tag photo.url, class: "venue_photo ui image" %>
+			<% end %>
+		</div>
 		<br />
 	<% end %>
+
 <% end %>

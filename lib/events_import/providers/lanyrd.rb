@@ -13,8 +13,10 @@ module EventsImport
 				topics.each do |topic|
 					results = fetch_events(topic, county)
 					results.each do |result|
-						slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
-						fetch_event(slug)
+						if result['external']
+							slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
+							fetch_event(slug)
+						end
 					end
 				end
 			end
