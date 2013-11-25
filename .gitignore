@@ -13,3 +13,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+.powenv
+.powrc
+
+.env
+.env.development
+.env.test
+
+/config/database.yml

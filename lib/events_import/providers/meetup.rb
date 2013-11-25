@@ -47,13 +47,13 @@ module EventsImport
 				events.each do |event|
 
 					if event.venue
-						venue = Venue.where(:title => event.venue.name, :county => event.venue.city).first_or_create(
-							:title => event.venue.name,
-							:address => event.venue.address_1,
-							:county => event.venue.city,
-							:country => "Ireland",
-							:lat => event.venue.lat,
-							:lng => event.venue.lon
+						venue = Venue.where(title: event.venue.name, county: event.venue.city).first_or_create(
+							title: event.venue.name,
+							address: event.venue.address_1,
+							county: event.venue.city,
+							country: "Ireland",
+							lat: event.venue.lat,
+							lng: event.venue.lon
 						)
 
 						unless venue.fs_id
@@ -74,15 +74,15 @@ module EventsImport
 					else
 						ending_time = starting_time + 3.hours
 					end
-					Event.where(:source => "meetup", :source_id => event.id).first_or_create(
-						:title => event.name,
-						:starting_at => Time.at(event.time / 1000.0),
-						:ending_at => ending_time,
-						:information_url => event.event_url,
-						:information => event.description,
-						:source => "meetup",
-						:source_id => event.id,
-						:venue_id => venue_id
+					Event.where(source: "meetup", source_id: event.id).first_or_create(
+						title: event.name,
+						starting_at: Time.at(event.time / 1000.0),
+						ending_at: ending_time,
+						information_url: event.event_url,
+						information: event.description,
+						source: "meetup",
+						source_id: event.id,
+						venue_id: venue_id
 					)
 				end
 			end

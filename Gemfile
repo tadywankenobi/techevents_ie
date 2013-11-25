@@ -1,33 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+ruby '2.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '4.0.1'
 
 gem 'pg'
-
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
 
 gem 'jquery-rails'
 
 # User accounts
 gem 'devise'
-
-group :test, :development do
-	gem 'rspec-rails', '~> 2.0'
-end
 
 # Parsing APIs
 gem 'httparty'
@@ -35,28 +17,28 @@ gem 'json'
 gem 'hashie'
 
 # Regions
-gem 'carmen', '~> 1.0.0.beta2'
+gem 'carmen', '~> 1.0.0'
 
 # Lanyrd API
 gem 'lanyrd', '~> 1.1.2'
 
 # Friendly URLS
-gem "friendly_id", "~> 4.0.9"
+gem "friendly_id", "~> 5.0.1"
 
 # Foursquare 2
 gem 'foursquare2'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# Asset Gems
+gem 'therubyracer', platforms: :ruby
+gem 'less-rails'
+gem 'autoprefixer-rails'
+gem 'semantic-ui-rails'
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '~> 2.3.1'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+# Development & Test Specific gems
+group :test, :development do
+	gem 'dotenv-rails'
+	gem 'rspec-rails', '~> 2.0'
+end

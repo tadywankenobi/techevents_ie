@@ -9,13 +9,14 @@ module EventsImport
 			def update county
 				topics = fetch_topics
 				lanyrd = Lanyrd::Client.new
-				
+
 				topics.each do |topic|
 					results = fetch_events(topic, county)
 					results.each do |result|
-						slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
-						fetch_event(slug)
-
+						if result['external']
+							slug = result['external'].gsub('http://lanyrd.com/2013/', '')[0..-2]
+							fetch_event(slug)
+						end
 					end
 				end
 			end
@@ -40,13 +41,13 @@ module EventsImport
 				puts "Checking or creating #{event['title']}"
 
 				if event['primary_venue']
-					venue = Venue.where(:title => event['primary_venue']['title'], :county => event['primary_venue']['combined_place'].split(", ").first).first_or_create(
-						:title => event['primary_venue']['title'],
-						:address => event['primary_venue']['subtitle'],
-						:county => event['primary_venue']['combined_place'].split(", ").first,
-						:country => event['primary_venue']['combined_place'].split(", ").last,
-						:lat => event['primary_venue']['latitude'],
-						:lng => event['primary_venue']['longitude']
+					venue = Venue.where(title: event['primary_venue']['title'], county: event['primary_venue']['combined_place'].split(", ").first).first_or_create(
+						title: event['primary_venue']['title'],
+						address: event['primary_venue']['subtitle'],
+						county: event['primary_venue']['combined_place'].split(", ").first,
+						country: event['primary_venue']['combined_place'].split(", ").last,
+						lat: event['primary_venue']['latitude'],
+						lng: event['primary_venue']['longitude']
 					)
 					puts "Venue: #{venue.title}"
 
@@ -61,16 +62,16 @@ module EventsImport
 				else
 					venue_id = 0
 				end
-				
-				Event.where(:source => "lanyrd", :source_id => event['external']).first_or_create(
-					:title => event['title'],
-					:starting_at => DateTime.parse(event['start_date']).change({:hour => 9, :min => 00}),
-					:ending_at => DateTime.parse(event['end_date']).change({:hour => 18, :min => 00}),
-					:information_url => event['external'],
-					:information => event['tagline'],
-					:source => 'lanyrd',
-					:source_id => event['external'],
-					:venue_id => venue_id
+
+				Event.where(source: "lanyrd", source_id: event['external']).first_or_create(
+					title: event['title'],
+					starting_at: DateTime.parse(event['start_date']).change({hour: 9, min: 00}),
+					ending_at: DateTime.parse(event['end_date']).change({hour: 18, min: 00}),
+					information_url: event['external'],
+					information: event['tagline'],
+					source: 'lanyrd',
+					source_id: event['external'],
+					venue_id: venue_id
 				)
 			end
 

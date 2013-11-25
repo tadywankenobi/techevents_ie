@@ -2,7 +2,7 @@ require 'events_import/events_import'
 require 'carmen'
 include Carmen
 
-task :import_meetups => :environment do
+task import_meetups: :environment do
 	puts "Importing Pub Standards Meetups..."
   pub_standards = EventsImport::Meetups::PubStandards.new
   pub_standards.import(1.year.ago.to_date, Date.today + 6.months)
@@ -14,7 +14,7 @@ task :import_meetups => :environment do
 	puts "Done."
 end
 
-task :import_providers => :environment do
+task import_providers: :environment do
 	puts "Importing Meetup.com..."
 	meetup = EventsImport::Providers::Meetup.new
 	lanyrd = EventsImport::Providers::Lanyrd.new
@@ -30,7 +30,7 @@ task :import_providers => :environment do
 	puts "Done."
 end
 
-task :import_all => :environment do
+task import_all: :environment do
 	Rake::Task['import_meetups'].invoke
 	Rake::Task['import_providers'].invoke
 end

@@ -10,11 +10,27 @@
   <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
   <link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1; maximum-scale=1.0; 
+  <meta name="viewport" content="width=device-width, initial-scale=1; maximum-scale=1.0;
   user-scalable=0;">
-  
+
 </head>
 <body>
+
+	<div class="ui transparent menu blue inverted">
+	  <div class="header item">TechEvents Ireland</div>
+	  <div class="right menu">
+	    <div class="item">
+        <a class="ui teal button" href="/users/sign_up">
+        	Sign up
+        </a>
+      </div>
+      <div class="item">
+        <a class="ui green button" href="/users/sign_in">
+        	Sign in
+        </a>
+      </div>
+	  </div>
+	</div>
 
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
@@ -22,7 +38,7 @@
 	<div class="wrapper">
 		<%= yield %>
 	</div>
-	
+
 	<script type="text/javascript">
 	  var _gauges = _gauges || [];
 	  (function() {
