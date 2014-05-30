@@ -7,10 +7,10 @@ require 'events_import/providers/lanyrd'
 module EventsImport
 	class Venues
 
-		@@client = Foursquare2::Client.new(client_id: ENV['FS_ID'], client_secret: ENV['FS_SECRET'])
+		@@client = Foursquare2::Client.new(client_id: ENV['FS_ID'], client_secret: ENV['FS_SECRET'], :api_version => '20131016')
 
 		def fetch_fs_id venue
-			fs_venue = Hashie::Mash.new(@@client.search_venues(ll: "#{venue.lat},#{venue.lng}", query: venue.title)).groups.first.items.first
+			fs_venue = Hashie::Mash.new(@@client.search_venues(ll: "#{venue.lat},#{venue.lng}", query: venue.title)).venues.first
 			if fs_venue
 				venue.fs_id = fs_venue.id
 				venue.save
