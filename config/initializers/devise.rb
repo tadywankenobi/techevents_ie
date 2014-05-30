@@ -25,7 +25,7 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   config.authentication_keys = [ :email ]
 
-  config.secret_key = ENV['DEVISE_SECRET']
+  config.secret_key = "b13110899de7487ef583d55642a55e3afe10b524aaf686876803abf98d94038dac21482d34e6bec3d1197c7b960a86081c1c73653e29011956d0d8905eafbafa"
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the

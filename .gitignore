@@ -17,8 +17,7 @@
 .powenv
 .powrc
 
+# Ignore Envorinmental Vars
 .env
 .env.development
 .env.test
-
-/config/database.yml
