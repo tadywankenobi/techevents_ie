@@ -28,6 +28,9 @@ gem "friendly_id", "~> 5.0.1"
 # Foursquare 2
 gem 'foursquare2'
 
+# unicorn
+gem 'unicorn'
+
 # Asset Gems
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
